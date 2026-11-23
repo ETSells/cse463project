@@ -2,6 +2,7 @@
   {
     "id": "asu-tee",
     "school": "ASU",
+    "brand": "ASU",
     "category": "shirt / tee",
     "name": "ASU Sun Devils Classic Logo T-Shirt",
     "price": 24.99,
@@ -10,34 +11,144 @@
     "description": "A soft everyday tee with a bold Sun Devils-inspired campus graphic. Made for class days, game days, and everything in between.",
     "reviews": 286,
     "colors": [
-      { "name": "Maroon", "hex": "#8c1d40", "available": true },
-      { "name": "Black", "hex": "#222222", "available": true },
-      { "name": "Gold", "hex": "#ffc627", "available": true },
-      { "name": "White", "hex": "#f8f6f0", "available": true }
+      {
+        "name": "Maroon",
+        "hex": "#8c1d40"
+      },
+      {
+        "name": "Black",
+        "hex": "#222222"
+      },
+      {
+        "name": "Gold",
+        "hex": "#ffc627"
+      },
+      {
+        "name": "White",
+        "hex": "#f8f6f0"
+      }
     ],
-    "sizes": ["S", "M", "L", "XL", "2XL"]
+    "sizes": [
+      {
+        "name": "S",
+        "colors": [
+          "Maroon",
+          "Black",
+          "White"
+        ]
+      },
+      {
+        "name": "M",
+        "colors": [
+          "Maroon",
+          "Black",
+          "Gold",
+          "White"
+        ]
+      },
+      {
+        "name": "L",
+        "colors": [
+          "Maroon",
+          "Black",
+          "Gold",
+          "White"
+        ]
+      },
+      {
+        "name": "XL",
+        "colors": [
+          "Maroon",
+          "Black",
+          "Gold",
+          "White"
+        ]
+      },
+      {
+        "name": "2XL",
+        "colors": [
+          "Maroon",
+          "White"
+        ]
+      }
+    ]
   },
   {
     "id": "asu-hoodie",
     "school": "ASU",
+    "brand": "ASU",
+    "sponsored": true,
     "category": "shirt / hoodie sweatshirt",
     "name": "ASU Sun Devils Fleece Pullover Hoodie",
     "price": 54.99,
+    "dealPrice": 47.99,
+    "dealLabel": "Limited-time deal",
     "image": "product-imgs/asu-hoodie.svg",
     "imageAlt": "Illustrated maroon ASU hooded sweatshirt",
     "description": "A cozy fleece pullover featuring a clean campus mark, ribbed cuffs, and a roomy front pocket.",
     "reviews": 174,
     "colors": [
-      { "name": "Maroon", "hex": "#8c1d40", "available": true },
-      { "name": "Black", "hex": "#222222", "available": true },
-      { "name": "Gold", "hex": "#ffc627", "available": false },
-      { "name": "White", "hex": "#f8f6f0", "available": true }
+      {
+        "name": "Maroon",
+        "hex": "#8c1d40"
+      },
+      {
+        "name": "Black",
+        "hex": "#222222"
+      },
+      {
+        "name": "Gold",
+        "hex": "#ffc627"
+      },
+      {
+        "name": "White",
+        "hex": "#f8f6f0"
+      }
     ],
-    "sizes": ["S", "M", "L", "XL", "2XL"]
+    "sizes": [
+      {
+        "name": "S",
+        "colors": [
+          "Maroon",
+          "Black"
+        ]
+      },
+      {
+        "name": "M",
+        "colors": [
+          "Maroon",
+          "Black",
+          "White"
+        ]
+      },
+      {
+        "name": "L",
+        "colors": [
+          "Maroon",
+          "Black",
+          "White"
+        ]
+      },
+      {
+        "name": "XL",
+        "colors": [
+          "Maroon",
+          "Black",
+          "White"
+        ]
+      },
+      {
+        "name": "2XL",
+        "colors": [
+          "Maroon"
+        ]
+      }
+    ]
   },
   {
     "id": "asu-quarter-zip",
     "school": "ASU",
+    "brand": "ASU",
     "category": "shirt / quarter zip pullover",
     "name": "ASU Sun Devils Lightweight Quarter-Zip",
     "price": 62.5,
@@ -46,16 +157,60 @@
     "description": "A versatile lightweight layer with a short zip collar and subtle Sun Devils detail.",
     "reviews": 93,
     "colors": [
-      { "name": "Maroon", "hex": "#8c1d40", "available": true },
-      { "name": "Black", "hex": "#222222", "available": true },
-      { "name": "Gold", "hex": "#ffc627", "available": true },
-      { "name": "White", "hex": "#f8f6f0", "available": false }
+      {
+        "name": "Maroon",
+        "hex": "#8c1d40"
+      },
+      {
+        "name": "Black",
+        "hex": "#222222"
+      },
+      {
+        "name": "Gold",
+        "hex": "#ffc627"
+      },
+      {
+        "name": "White",
+        "hex": "#f8f6f0"
+      }
     ],
-    "sizes": ["S", "M", "L", "XL"]
+    "sizes": [
+      {
+        "name": "S",
+        "colors": [
+          "Maroon",
+          "Gold"
+        ]
+      },
+      {
+        "name": "M",
+        "colors": [
+          "Maroon",
+          "Black",
+          "Gold"
+        ]
+      },
+      {
+        "name": "L",
+        "colors": [
+          "Maroon",
+          "Black",
+          "Gold"
+        ]
+      },
+      {
+        "name": "XL",
+        "colors": [
+          "Maroon",
+          "Black"
+        ]
+      }
+    ]
   },
   {
     "id": "asu-womens-tee",
     "school": "ASU",
+    "brand": "ASU",
     "category": "shirt / tee",
     "name": "ASU Arizona State University Relaxed T-Shirt",
     "price": 27.5,
@@ -64,26 +219,408 @@
     "description": "A relaxed-fit campus tee with a simple Arizona State University chest graphic.",
     "reviews": 118,
     "colors": [
-      { "name": "Maroon", "hex": "#8c1d40", "available": true },
-      { "name": "Black", "hex": "#222222", "available": false },
-      { "name": "Gold", "hex": "#ffc627", "available": true },
-      { "name": "White", "hex": "#f8f6f0", "available": true }
+      {
+        "name": "Maroon",
+        "hex": "#8c1d40"
+      },
+      {
+        "name": "Black",
+        "hex": "#222222"
+      },
+      {
+        "name": "Gold",
+        "hex": "#ffc627"
+      },
+      {
+        "name": "White",
+        "hex": "#f8f6f0"
+      }
     ],
-    "sizes": ["XS", "S", "M", "L", "XL"]
+    "sizes": [
+      {
+        "name": "XS",
+        "colors": [
+          "Maroon",
+          "White"
+        ]
+      },
+      {
+        "name": "S",
+        "colors": [
+          "Maroon",
+          "Gold",
+          "White"
+        ]
+      },
+      {
+        "name": "M",
+        "colors": [
+          "Maroon",
+          "Gold"
+        ]
+      },
+      {
+        "name": "L",
+        "colors": [
+          "Maroon",
+          "Gold",
+          "White"
+        ]
+      },
+      {
+        "name": "XL",
+        "colors": [
+          "Maroon",
+          "White"
+        ]
+      }
+    ]
   },
   {
     "id": "nau-tee",
     "school": "Northern Arizona",
+    "brand": "Northern Arizona",
     "category": "shirt / tee",
     "name": "Northern Arizona Lumberjacks Campus T-Shirt",
-    "price": 22.0,
+    "price": 22,
     "image": "product-imgs/other-school-tee.svg",
     "imageAlt": "Illustrated blue Northern Arizona campus t-shirt",
-    "description": "A simple single-color campus tee from another Arizona school, included as a surface-level catalog listing.",
+    "description": "A simple single-color campus tee from Northern Arizona.",
     "reviews": 42,
     "colors": [
-      { "name": "Navy", "hex": "#17345c", "available": true }
+      {
+        "name": "Navy",
+        "hex": "#17345c"
+      }
     ],
-    "sizes": ["M"]
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Navy"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "uaz-tee",
+    "school": "University of Arizona",
+    "brand": "University of Arizona",
+    "sponsored": true,
+    "category": "shirt / tee",
+    "name": "Arizona Wildcats Classic Campus T-Shirt",
+    "price": 24,
+    "image": "product-imgs/uaz-tee.svg",
+    "imageAlt": "Cardinal University of Arizona campus t-shirt illustration",
+    "description": "A classic cardinal tee with clean Arizona lettering.",
+    "reviews": 312,
+    "colors": [
+      {
+        "name": "Cardinal",
+        "hex": "#ab0520"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Cardinal"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "uaz-hoodie",
+    "school": "University of Arizona",
+    "brand": "University of Arizona",
+    "category": "shirt / hoodie sweatshirt",
+    "name": "Arizona Wildcats Fleece Pullover Hoodie",
+    "price": 52,
+    "dealPrice": 44.99,
+    "dealLabel": "Limited-time deal",
+    "image": "product-imgs/uaz-hoodie.svg",
+    "imageAlt": "Navy University of Arizona hoodie illustration",
+    "description": "A cozy navy pullover with a simple Wildcats chest graphic.",
+    "reviews": 146,
+    "colors": [
+      {
+        "name": "Navy",
+        "hex": "#0c234b"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Navy"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "uaz-quarter-zip",
+    "school": "University of Arizona",
+    "brand": "University of Arizona",
+    "category": "shirt / quarter zip pullover",
+    "name": "Arizona Wildcats Quarter-Zip Pullover",
+    "price": 61,
+    "image": "product-imgs/uaz-quarter-zip.svg",
+    "imageAlt": "Cardinal University of Arizona quarter-zip illustration",
+    "description": "A lightweight cardinal layer with a quarter-length zipper.",
+    "reviews": 87,
+    "colors": [
+      {
+        "name": "Cardinal",
+        "hex": "#ab0520"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Cardinal"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "usc-tee",
+    "school": "University of Southern California",
+    "brand": "USC",
+    "category": "shirt / tee",
+    "name": "USC Trojans Cardinal Campus T-Shirt",
+    "price": 25,
+    "dealPrice": 19.99,
+    "dealLabel": "Limited-time deal",
+    "image": "product-imgs/usc-tee.svg",
+    "imageAlt": "Cardinal USC campus t-shirt illustration",
+    "description": "A cardinal campus tee with a clean USC chest graphic.",
+    "reviews": 428,
+    "colors": [
+      {
+        "name": "Cardinal",
+        "hex": "#990000"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Cardinal"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "usc-hoodie",
+    "school": "University of Southern California",
+    "brand": "USC",
+    "category": "shirt / hoodie sweatshirt",
+    "name": "USC Trojans Gold Fleece Hoodie",
+    "price": 56,
+    "image": "product-imgs/usc-hoodie.svg",
+    "imageAlt": "Gold USC hoodie illustration",
+    "description": "A gold fleece pullover with a simple USC chest graphic.",
+    "reviews": 203,
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#ffcc00"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Gold"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "usc-quarter-zip",
+    "school": "University of Southern California",
+    "brand": "USC",
+    "category": "shirt / quarter zip pullover",
+    "name": "USC Trojans Lightweight Quarter-Zip",
+    "price": 64,
+    "image": "product-imgs/usc-quarter-zip.svg",
+    "imageAlt": "Cardinal USC quarter-zip illustration",
+    "description": "A lightweight cardinal layer with a quarter-length zipper.",
+    "reviews": 116,
+    "colors": [
+      {
+        "name": "Cardinal",
+        "hex": "#990000"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Cardinal"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ucla-tee",
+    "school": "UCLA",
+    "brand": "UCLA",
+    "category": "shirt / tee",
+    "name": "UCLA Bruins Blue Campus T-Shirt",
+    "price": 23,
+    "image": "product-imgs/ucla-tee.svg",
+    "imageAlt": "Blue UCLA campus t-shirt illustration",
+    "description": "A blue campus tee with a simple UCLA chest graphic.",
+    "reviews": 367,
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#2774ae"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Blue"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ucla-hoodie",
+    "school": "UCLA",
+    "brand": "UCLA",
+    "category": "shirt / hoodie sweatshirt",
+    "name": "UCLA Bruins Gold Pullover Hoodie",
+    "price": 55,
+    "image": "product-imgs/ucla-hoodie.svg",
+    "imageAlt": "Gold UCLA hoodie illustration",
+    "description": "A warm gold pullover with a simple UCLA chest graphic.",
+    "reviews": 241,
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#ffd100"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Gold"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ucla-quarter-zip",
+    "school": "UCLA",
+    "brand": "UCLA",
+    "category": "shirt / quarter zip pullover",
+    "name": "UCLA Bruins Performance Quarter-Zip",
+    "price": 63,
+    "dealPrice": 54.99,
+    "dealLabel": "Limited-time deal",
+    "image": "product-imgs/ucla-quarter-zip.svg",
+    "imageAlt": "Blue UCLA quarter-zip illustration",
+    "description": "A lightweight blue layer with a quarter-length zipper.",
+    "reviews": 94,
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#2774ae"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Blue"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "oregon-tee",
+    "school": "University of Oregon",
+    "brand": "Oregon",
+    "category": "shirt / tee",
+    "name": "Oregon Ducks Green Campus T-Shirt",
+    "price": 24,
+    "image": "product-imgs/oregon-tee.svg",
+    "imageAlt": "Green Oregon campus t-shirt illustration",
+    "description": "A green campus tee with a simple Oregon chest graphic.",
+    "reviews": 289,
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#154733"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Green"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "oregon-hoodie",
+    "school": "University of Oregon",
+    "brand": "Oregon",
+    "category": "shirt / hoodie sweatshirt",
+    "name": "Oregon Ducks Yellow Fleece Hoodie",
+    "price": 53,
+    "dealPrice": 44.99,
+    "dealLabel": "Limited-time deal",
+    "image": "product-imgs/oregon-hoodie.svg",
+    "imageAlt": "Yellow Oregon hoodie illustration",
+    "description": "A warm yellow pullover with a simple Oregon chest graphic.",
+    "reviews": 177,
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#fee123"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Yellow"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "oregon-quarter-zip",
+    "school": "University of Oregon",
+    "brand": "Oregon",
+    "category": "shirt / quarter zip pullover",
+    "name": "Oregon Ducks Lightweight Quarter-Zip",
+    "price": 62,
+    "image": "product-imgs/oregon-quarter-zip.svg",
+    "imageAlt": "Green Oregon quarter-zip illustration",
+    "description": "A lightweight green layer with a quarter-length zipper.",
+    "reviews": 108,
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#154733"
+      }
+    ],
+    "sizes": [
+      {
+        "name": "M",
+        "colors": [
+          "Green"
+        ]
+      }
+    ]
   }
 ]

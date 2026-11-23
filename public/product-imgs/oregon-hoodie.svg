@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" role="img" aria-labelledby="title">
+  <title id="title">Yellow Oregon hoodie illustration</title>
+  <rect width="480" height="420" rx="18" fill="#f7f5f2"/>
+  <ellipse cx="240" cy="370" rx="125" ry="15" fill="#ded9d3"/>
+  <path d="M179 106c7-31 28-50 61-50s54 19 61 50l32 13 54 62-44 37-26-25v127H163V193l-26 25-44-37 54-62z" fill="#fee123" stroke="#d7bb12" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M193 105c2-29 17-44 47-44s45 15 47 44l-20 23h-54z" fill="#e8cd1c" stroke="#f7f5f2" stroke-width="5"/>
+  <path d="M196 246c0-15 12-27 27-27h34c15 0 27 12 27 27v18h-88z" fill="#e8cd1c"/>
+  <text x="240" y="193" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="800" fill="#154733">DUCKS</text>
+</svg>

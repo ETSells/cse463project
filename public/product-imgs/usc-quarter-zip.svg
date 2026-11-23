@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" role="img" aria-labelledby="title">
+  <title id="title">Cardinal USC quarter-zip illustration</title>
+  <rect width="480" height="420" rx="18" fill="#f7f5f2"/>
+  <ellipse cx="240" cy="368" rx="112" ry="15" fill="#ded9d3"/>
+  <path d="m171 86 34-18h70l34 18 62 37-36 59-33-19v175H178V163l-33 19-36-59z" fill="#990000" stroke="#690000" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M205 69c9 20 21 29 35 29s26-9 35-29M240 98v82" fill="none" stroke="#ffcc00" stroke-width="8"/>
+  <rect x="234" y="151" width="12" height="8" rx="2" fill="#d6d6d6"/>
+  <text x="240" y="231" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="800" fill="#ffcc00">TROJANS</text>
+</svg>

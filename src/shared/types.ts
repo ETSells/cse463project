@@ -1,21 +1,29 @@
 export interface ProductColor {
   name: string;
   hex: string;
-  available: boolean;
+}
+
+export interface ProductSize {
+  name: string;
+  colors: string[];
 }
 
 export interface Product {
   id: string;
   school: string;
+  brand: string;
+  sponsored?: boolean;
   category: string;
   name: string;
   price: number;
+  dealPrice?: number;
+  dealLabel?: string;
   image: string;
   imageAlt: string;
   description: string;
   reviews: number;
   colors: ProductColor[];
-  sizes: string[];
+  sizes: ProductSize[];
 }
 
 export interface CartItem {
