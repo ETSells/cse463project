@@ -2,6 +2,9 @@ import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import OriginalApp from '../original/OriginalApp';
 import RedesignApp from '../redesign/RedesignApp';
 
+const CART_KEY = 'campus-cart-v1';
+const RECENTLY_VIEWED_KEY = 'campus-recently-viewed-v1';
+
 export default function App() {
   return <Routes>
     <Route path="/" element={
@@ -24,6 +27,11 @@ export default function App() {
           <span><strong>Refined experience</strong><small>Coming later</small></span><span className="coming-pill">NOT AVAILABLE</span>
         </div>
         <p className="menu-note">Demo only · No real order or payment is processed</p>
+        <button className="reset-button" type="button" onClick={() => {
+          localStorage.removeItem(CART_KEY);
+          localStorage.removeItem(RECENTLY_VIEWED_KEY);
+          window.location.reload();
+        }}>Reset cart & local state</button>
       </section>
     </main>
     } />

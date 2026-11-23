@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { CSSProperties, MouseEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { loadCatalog, productImage } from '../shared/catalog';
@@ -9,6 +9,7 @@ type DeliveryAddress = { name: string; street: string; city: string; state: stri
 type TrackingOrder = { items: CartItem[]; address: DeliveryAddress; deliverySpeed: DeliverySpeed };
 
 const CART_KEY = 'campus-cart-v1';
+const RECENTLY_VIEWED_KEY = 'campus-recently-viewed-v1';
 const money = (value: number) => `$${Number(value).toFixed(2)}`;
 const unitPrice = (product: Product) => product.dealPrice ?? product.price;
 const dateFromNow = (daysFromNow: number) => {
@@ -28,6 +29,15 @@ function getSavedCart(): CartItem[] {
   }
 }
 
+function getSavedRecentlyViewed(): string[] {
+  try {
+    const value = JSON.parse(localStorage.getItem(RECENTLY_VIEWED_KEY) || '[]');
+    return Array.isArray(value) ? value.filter((id): id is string => typeof id === 'string') : [];
+  } catch {
+    return [];
+  }
+}
+
 function Header({ cartCount, onCart }: { cartCount: number; onCart: () => void }) {
   return (
     <header className="shop-header original">
@@ -41,18 +51,19 @@ function Header({ cartCount, onCart }: { cartCount: number; onCart: () => void }
   );
 }
 
-function ProductTile({ product, onSelect, onQuickAdd, sponsored = false }: { product: Product; onSelect: (product: Product) => void; onQuickAdd: (product: Product, color: string, size: string) => void; sponsored?: boolean }) {
+function ProductTile({ product, onSelect, onQuickAdd, sponsored = false, recentlyViewed = false }: { product: Product; onSelect: (product: Product) => void; onQuickAdd: (product: Product, color: string, size: string) => void; sponsored?: boolean; recentlyViewed?: boolean }) {
   const defaultSize = product.sizes.find((size) => size.colors.length > 0);
   const defaultColor = product.colors.find((color) => defaultSize?.colors.includes(color.name));
   const canPurchase = defaultColor !== undefined && defaultSize !== undefined;
+  const discountPercent = product.dealPrice === undefined ? null : Math.round((1 - product.dealPrice / product.price) * 100);
   const handleProductLink = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     if (product.school === 'ASU') onSelect(product);
     else window.alert('This is the wrong product and is not implemented. Try again.');
   };
-  const imageContent = <>{sponsored && <span className="sponsored-tag">Sponsored</span>}<img src={productImage(product.image)} alt={product.imageAlt} /></>;
+  const imageContent = <>{sponsored && <span className="sponsored-tag">Sponsored</span>}{recentlyViewed && <span className="recently-viewed-label">Recently Viewed</span>}{discountPercent !== null && <span className="deal-image-tag">Active deal · {discountPercent}% off</span>}<img src={productImage(product.image)} alt={product.imageAlt} /></>;
   return (
-    <article className="product-tile product-tile-original">
+    <article className={`product-tile product-tile-original ${recentlyViewed ? 'recently-viewed' : ''}`}>
       <a className="product-picture" href="#/" onClick={handleProductLink} aria-label={`View ${product.name}`}>{imageContent}</a>
       <div className="tile-copy tile-copy-original">
         <strong className="tile-brand">{product.brand}</strong>
@@ -60,7 +71,7 @@ function ProductTile({ product, onSelect, onQuickAdd, sponsored = false }: { pro
         <div className="rating"><span>★★★★★</span> <small>{product.reviews}</small></div>
         <div className="tile-price-original">
           {product.dealPrice !== undefined
-            ? <><span className="deal-label">{product.dealLabel ?? 'Deal'}</span><span className="discount-percent">-{Math.round((1 - product.dealPrice / product.price) * 100)}%</span><strong>{money(product.dealPrice)}</strong><del>{money(product.price)}</del></>
+            ? <><strong>{money(product.dealPrice)}</strong><del>{money(product.price)}</del></>
             : <strong>{money(product.price)}</strong>}
         </div>
         <small className="delivery">FREE delivery on eligible orders</small>
@@ -72,7 +83,7 @@ function ProductTile({ product, onSelect, onQuickAdd, sponsored = false }: { pro
   );
 }
 
-function SearchPage({ catalog, query, setQuery, onSelect, onQuickAdd }: { catalog: Product[]; query: string; setQuery: (query: string) => void; onSelect: (product: Product) => void; onQuickAdd: (product: Product, color: string, size: string) => void }) {
+function SearchPage({ catalog, query, setQuery, onSelect, onQuickAdd, recentlyViewed }: { catalog: Product[]; query: string; setQuery: (query: string) => void; onSelect: (product: Product) => void; onQuickAdd: (product: Product, color: string, size: string) => void; recentlyViewed: string[] }) {
   const asu = catalog.filter((product) => product.school === 'ASU');
   const other = catalog.filter((product) => product.school !== 'ASU');
   const sponsored = catalog.filter((product) => product.sponsored);
@@ -106,10 +117,10 @@ function SearchPage({ catalog, query, setQuery, onSelect, onQuickAdd }: { catalo
           <div className="result-count">1-{filtered.length + other.length} of {filtered.length + other.length} results for <strong>“{query || 'all products'}”</strong></div>
           <section className="sponsored-panel">
             <div className="section-title"><h2>Inspired by your search</h2><span>Sponsored</span></div>
-            <div className="featured-grid">{sponsored.map((product) => <ProductTile key={`s-${product.id}`} product={product} onSelect={onSelect} onQuickAdd={onQuickAdd} sponsored />)}</div>
+            <div className="featured-grid">{sponsored.map((product) => <ProductTile key={`s-${product.id}`} product={product} onSelect={onSelect} onQuickAdd={onQuickAdd} sponsored recentlyViewed={recentlyViewed.includes(product.id)} />)}</div>
           </section>
           <div className="sort-bar"><strong>Results</strong><span>Sort by: <b>Featured⌄</b></span></div>
-          <div className="product-grid">{results.map((product) => <ProductTile key={product.id} product={product} onSelect={onSelect} onQuickAdd={onQuickAdd} />)}</div>
+          <div className="product-grid">{results.map((product) => <ProductTile key={product.id} product={product} onSelect={onSelect} onQuickAdd={onQuickAdd} recentlyViewed={recentlyViewed.includes(product.id)} />)}</div>
           {filtered.length === 0 && <p className="empty-results">No matching Sun Devil styles. Try “shirt”, “hoodie”, or “quarter zip”.</p>}
         </main>
       </div>
@@ -124,30 +135,18 @@ function DetailPage({ product, onBack, onAdd }: { product: Product; onBack: () =
   const [color, setColor] = useState(initialColor?.name ?? '');
   const [size, setSize] = useState(initialSize?.name ?? '');
   const [quantity, setQuantity] = useState(1);
-  const swatchesRef = useRef<HTMLDivElement>(null);
-  const [canScrollColorsLeft, setCanScrollColorsLeft] = useState(false);
-  const [canScrollColorsRight, setCanScrollColorsRight] = useState(false);
+  const [variantPickerOpen, setVariantPickerOpen] = useState(false);
   const selectedColor = product.colors.find((item) => item.name === color);
   const availableColors = product.sizes.find((item) => item.name === size)?.colors ?? [];
   const unavailable = !selectedColor || !availableColors.includes(selectedColor.name);
   useEffect(() => {
-    const swatches = swatchesRef.current;
-    if (!swatches) return;
-    const updateScrollButtons = () => {
-      setCanScrollColorsLeft(swatches.scrollLeft > 1);
-      setCanScrollColorsRight(swatches.scrollLeft + swatches.clientWidth < swatches.scrollWidth - 1);
+    if (!variantPickerOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setVariantPickerOpen(false);
     };
-    updateScrollButtons();
-    swatches.addEventListener('scroll', updateScrollButtons, { passive: true });
-    window.addEventListener('resize', updateScrollButtons);
-    return () => {
-      swatches.removeEventListener('scroll', updateScrollButtons);
-      window.removeEventListener('resize', updateScrollButtons);
-    };
-  }, [product.colors.length]);
-  const scrollColors = (direction: -1 | 1) => {
-    swatchesRef.current?.scrollBy({ left: direction * (swatchesRef.current.clientWidth * 0.75), behavior: 'smooth' });
-  };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [variantPickerOpen]);
   return (
     <main className="detail-page">
       <button className="back-link" onClick={onBack}>‹ Back to search results</button>
@@ -161,32 +160,22 @@ function DetailPage({ product, onBack, onAdd }: { product: Product; onBack: () =
           <hr className="detail-separator" />
           <div className="detail-price">{money(unitPrice(product))} {product.dealPrice !== undefined && <del>{money(product.price)}</del>} <span>({product.school} shop price)</span></div>
           <p className="detail-description">{product.description}</p>
-          <div className="option-group"><strong>Color: <span>{color}</span></strong><div className="swatch-carousel">
-            <button type="button" className="swatch-scroll-button" aria-label="Scroll colors left" disabled={!canScrollColorsLeft} onClick={() => scrollColors(-1)}>‹</button>
-            <div className="swatches" ref={swatchesRef}>
-              {product.colors.map((item) => {
-              const isAvailable = availableColors.includes(item.name);
-              return <div key={item.name} className={`swatch-option ${color === item.name ? 'selected' : ''} ${!isAvailable ? 'unavailable' : ''}`}>
-                <button type="button" className="swatch" onClick={() => isAvailable && setColor(item.name)} disabled={!isAvailable} aria-label={`${item.name}, ${money(unitPrice(product))}${isAvailable ? '' : `, unavailable in ${size}`}`} title={`${item.name}${isAvailable ? '' : ` (unavailable in ${size})`}`} style={{ '--swatch': item.hex } as CSSProperties} />
-                <span className="swatch-name">{item.name}</span>
-                <strong className="swatch-price">{money(unitPrice(product))}</strong>
-              </div>;
-              })}
-            </div>
-            <button type="button" className="swatch-scroll-button" aria-label="Scroll colors right" disabled={!canScrollColorsRight} onClick={() => scrollColors(1)}>›</button>
-          </div></div>
-          {product.sizes.length > 1 && <label className="size-select">Size<select value={size} onChange={(event) => {
-            const nextSize = event.target.value;
-            const nextColors = product.sizes.find((item) => item.name === nextSize)?.colors ?? [];
-            setSize(nextSize);
-            if (!nextColors.includes(color)) setColor(nextColors[0] ?? '');
-          }}>{product.sizes.map((option) => <option key={option.name} value={option.name}>{option.name}</option>)}</select></label>}
+          <div className="variant-option-group">
+            <p>Color and size</p>
+            <button type="button" className="variant-picker-trigger" aria-haspopup="dialog" aria-expanded={variantPickerOpen} onClick={() => setVariantPickerOpen(true)}>
+              <span className="variant-picker-current">
+                <span className="variant-color-dot" aria-hidden="true" style={{ '--swatch': selectedColor?.hex ?? '#ddd' } as CSSProperties} />
+                <span><strong>{color}, size {size}</strong><small>View available variants, prices, and delivery</small></span>
+              </span>
+              <span className="variant-picker-action">Choose options <b aria-hidden="true">›</b></span>
+            </button>
+          </div>
           {unavailable && <p className="availability-note">That color is unavailable for the selected size. Choose another option to continue.</p>}
         </section>
         <aside className="buy-box" aria-label="Purchase options">
           <div className="buy-box-price"><strong>{money(unitPrice(product))}</strong>{product.dealPrice !== undefined && <del>{money(product.price)}</del>}</div>
           {product.dealPrice !== undefined && <p className="buy-box-deal">{product.dealLabel ?? 'Limited-time deal'}</p>}
-          <p className="buy-box-delivery">FREE delivery <strong>in 3–5 business days</strong></p>
+          <p className="buy-box-delivery">FREE delivery <strong>tomorrow</strong></p>
           <p className="buy-box-destination">Deliver to User - Tempe 85281</p>
           <p className="stock-status">In Stock</p>
           <label className="quantity-select">Quantity
@@ -204,6 +193,49 @@ function DetailPage({ product, onBack, onAdd }: { product: Product; onBack: () =
           <p className="detail-subtext">This is a fictional product listing for a class prototype. No purchase will be made.</p>
         </aside>
       </div>
+      {variantPickerOpen && <div className="variant-modal-backdrop" onMouseDown={(event) => {
+        if (event.target === event.currentTarget) setVariantPickerOpen(false);
+      }}>
+        <section className="variant-modal" role="dialog" aria-modal="true" aria-labelledby="variant-modal-title">
+          <header className="variant-modal-header">
+            <div><h2 id="variant-modal-title">Choose color and size</h2><p>Select an available combination.</p></div>
+            <button type="button" className="variant-modal-close" aria-label="Close variant selector" autoFocus onClick={() => setVariantPickerOpen(false)}>×</button>
+          </header>
+          <div className="variant-matrix-scroll">
+            <table className="variant-matrix">
+              <thead><tr>
+                <th scope="col">Size</th>
+                {product.colors.map((item) => <th scope="col" key={item.name}>
+                  <span className="variant-color-heading"><span className="variant-color-dot" aria-hidden="true" style={{ '--swatch': item.hex } as CSSProperties} />{item.name}</span>
+                </th>)}
+              </tr></thead>
+              <tbody>{product.sizes.map((sizeOption) => <tr key={sizeOption.name}>
+                <th scope="row">{sizeOption.name}</th>
+                {product.colors.map((colorOption) => {
+                  const isAvailable = sizeOption.colors.includes(colorOption.name);
+                  const isSelected = size === sizeOption.name && color === colorOption.name;
+                  return <td key={colorOption.name}>
+                    <button
+                      type="button"
+                      className={`variant-cell ${isAvailable ? '' : 'unavailable'} ${isSelected ? 'selected' : ''}`}
+                      disabled={!isAvailable}
+                      aria-label={`${colorOption.name}, size ${sizeOption.name}${isAvailable ? `, ${money(unitPrice(product))}, free delivery tomorrow` : ', unavailable'}`}
+                      onClick={() => {
+                        setColor(colorOption.name);
+                        setSize(sizeOption.name);
+                        setVariantPickerOpen(false);
+                      }}
+                    >
+                      {isAvailable ? <><strong>{money(unitPrice(product))}</strong><small>FREE delivery<br />tomorrow</small></> : <span className="variant-unavailable-label">Unavailable</span>}
+                    </button>
+                  </td>;
+                })}
+              </tr>)}</tbody>
+            </table>
+          </div>
+          <p className="variant-modal-note">Unavailable size and color combinations are greyed out.</p>
+        </section>
+      </div>}
       <section className="reviews" id="reviews"><h2>Customer reviews</h2><div className="rating"><span>★★★★★</span> 4.8 out of 5</div><p>“Comfortable fit and the colors look great on game day.”</p><small>Sample review · Reviews are illustrative only</small></section>
     </main>
   );
@@ -333,6 +365,7 @@ export default function RedesignApp() {
   const [selected, setSelected] = useState<Product | null>(null);
   const [cart, setCart] = useState<CartItem[]>(getSavedCart);
   const [completedOrder, setCompletedOrder] = useState<TrackingOrder | null>(null);
+  const [recentlyViewed, setRecentlyViewed] = useState<string[]>(getSavedRecentlyViewed);
 
   useEffect(() => {
     loadCatalog().then(setCatalog).catch((error) => setLoadError(error.message));
@@ -351,11 +384,15 @@ export default function RedesignApp() {
       return;
     }
     setSelected(product);
+    setRecentlyViewed((current) => current.includes(product.id) ? current : [...current, product.id]);
     setStep('detail');
   }, [catalog, location.pathname, navigate]);
   useEffect(() => {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
   }, [cart]);
+  useEffect(() => {
+    localStorage.setItem(RECENTLY_VIEWED_KEY, JSON.stringify(recentlyViewed));
+  }, [recentlyViewed]);
 
   const cartCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
   const addToCart = ({ product, color, size }: { product: Product; color: string; size: string }, quantity = 1) => {
@@ -382,7 +419,7 @@ export default function RedesignApp() {
       <Header cartCount={cartCount} onCart={() => setStep('cart')} />
       
       {loadError ? <main className="load-error"><h1>Catalog unavailable</h1><p>{loadError}</p><button onClick={() => window.location.reload()}>Try again</button></main> : catalog.length === 0 ? <main className="loading-state">Loading campus shop…</main> : <>
-        {step === 'search' && <SearchPage catalog={catalog} query={query} setQuery={setQuery} onSelect={(product) => { setSelected(product); setStep('detail'); navigate(`/redesign/product/${encodeURIComponent(product.id)}`); }} onQuickAdd={(product, color, size) => addToCart({ product, color, size })} />}
+        {step === 'search' && <SearchPage catalog={catalog} query={query} setQuery={setQuery} onSelect={(product) => { setSelected(product); setStep('detail'); navigate(`/redesign/product/${encodeURIComponent(product.id)}`); }} onQuickAdd={(product, color, size) => addToCart({ product, color, size })} recentlyViewed={recentlyViewed} />}
         {step === 'detail' && selected && <DetailPage product={selected} onBack={returnToSearch} onAdd={addToCart} />}
         {step === 'cart' && <CartPage cart={cart} onQuantity={updateQuantity} onRemove={removeItem} onContinue={() => setStep('checkout')} onBack={returnToSearch} />}
         {step === 'checkout' && <CheckoutPage cart={cart} onPlaceOrder={(shipping) => { setCompletedOrder({ items: cart.map((item) => ({ ...item })), ...shipping }); setCart([]); setStep('tracking'); }} onBack={() => setStep('cart')} />}
