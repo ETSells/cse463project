@@ -1,0 +1,89 @@
+[
+  {
+    "id": "asu-tee",
+    "school": "ASU",
+    "category": "shirt / tee",
+    "name": "ASU Sun Devils Classic Logo T-Shirt",
+    "price": 24.99,
+    "image": "product-imgs/asu-tee.svg",
+    "imageAlt": "Illustrated maroon ASU Sun Devils t-shirt",
+    "description": "A soft everyday tee with a bold Sun Devils-inspired campus graphic. Made for class days, game days, and everything in between.",
+    "reviews": 286,
+    "colors": [
+      { "name": "Maroon", "hex": "#8c1d40", "available": true },
+      { "name": "Black", "hex": "#222222", "available": true },
+      { "name": "Gold", "hex": "#ffc627", "available": true },
+      { "name": "White", "hex": "#f8f6f0", "available": true }
+    ],
+    "sizes": ["S", "M", "L", "XL", "2XL"]
+  },
+  {
+    "id": "asu-hoodie",
+    "school": "ASU",
+    "category": "shirt / hoodie sweatshirt",
+    "name": "ASU Sun Devils Fleece Pullover Hoodie",
+    "price": 54.99,
+    "image": "product-imgs/asu-hoodie.svg",
+    "imageAlt": "Illustrated maroon ASU hooded sweatshirt",
+    "description": "A cozy fleece pullover featuring a clean campus mark, ribbed cuffs, and a roomy front pocket.",
+    "reviews": 174,
+    "colors": [
+      { "name": "Maroon", "hex": "#8c1d40", "available": true },
+      { "name": "Black", "hex": "#222222", "available": true },
+      { "name": "Gold", "hex": "#ffc627", "available": false },
+      { "name": "White", "hex": "#f8f6f0", "available": true }
+    ],
+    "sizes": ["S", "M", "L", "XL", "2XL"]
+  },
+  {
+    "id": "asu-quarter-zip",
+    "school": "ASU",
+    "category": "shirt / quarter zip pullover",
+    "name": "ASU Sun Devils Lightweight Quarter-Zip",
+    "price": 62.5,
+    "image": "product-imgs/asu-quarter-zip.svg",
+    "imageAlt": "Illustrated maroon ASU quarter-zip pullover",
+    "description": "A versatile lightweight layer with a short zip collar and subtle Sun Devils detail.",
+    "reviews": 93,
+    "colors": [
+      { "name": "Maroon", "hex": "#8c1d40", "available": true },
+      { "name": "Black", "hex": "#222222", "available": true },
+      { "name": "Gold", "hex": "#ffc627", "available": true },
+      { "name": "White", "hex": "#f8f6f0", "available": false }
+    ],
+    "sizes": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": "asu-womens-tee",
+    "school": "ASU",
+    "category": "shirt / tee",
+    "name": "ASU Arizona State University Relaxed T-Shirt",
+    "price": 27.5,
+    "image": "product-imgs/asu-tee.svg",
+    "imageAlt": "Illustrated maroon ASU relaxed fit t-shirt",
+    "description": "A relaxed-fit campus tee with a simple Arizona State University chest graphic.",
+    "reviews": 118,
+    "colors": [
+      { "name": "Maroon", "hex": "#8c1d40", "available": true },
+      { "name": "Black", "hex": "#222222", "available": false },
+      { "name": "Gold", "hex": "#ffc627", "available": true },
+      { "name": "White", "hex": "#f8f6f0", "available": true }
+    ],
+    "sizes": ["XS", "S", "M", "L", "XL"]
+  },
+  {
+    "id": "nau-tee",
+    "school": "Northern Arizona",
+    "category": "shirt / tee",
+    "name": "Northern Arizona Lumberjacks Campus T-Shirt",
+    "price": 22.0,
+    "image": "product-imgs/other-school-tee.svg",
+    "imageAlt": "Illustrated blue Northern Arizona campus t-shirt",
+    "description": "A simple single-color campus tee from another Arizona school, included as a surface-level catalog listing.",
+    "reviews": 42,
+    "colors": [
+      { "name": "Navy", "hex": "#17345c", "available": true }
+    ],
+    "sizes": ["M"]
+  }
+]
