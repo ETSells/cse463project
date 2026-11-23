@@ -10,8 +10,8 @@ export default function App() {
     <Route path="/" element={
     <main className="menu-page">
       <header className="menu-brand">
-        <span className="brand-mark">C</span>
-        <span>Campus Cart</span>
+        <span className="brand-mark">S</span>
+        <span>Shamazon</span>
       </header>
       <section className="menu-card">
         <p className="eyebrow">SHOPPING FLOW PROTOTYPE</p>

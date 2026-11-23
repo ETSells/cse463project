@@ -41,7 +41,7 @@ function getSavedRecentlyViewed(): string[] {
 function Header({ cartCount, onCart }: { cartCount: number; onCart: () => void }) {
   return (
     <header className="shop-header original">
-      <a className="shop-logo" href="#/" aria-label="Campus Cart home"><span className="brand-mark">C</span><span>campus<span className="logo-light">cart</span></span></a>
+      <a className="shop-logo" href="#/" aria-label="Shamazon home"><span className="brand-mark">S</span><span>Sham<span className="logo-light">azon</span></span></a>
       <div className="header-location"><span aria-hidden="true">⌖</span><span>Deliver to<br /><strong>Tempe 85281</strong></span></div>
       <div className="header-search-label">My Account</div>
       <button className="header-cart" onClick={onCart} aria-label={`Open cart, ${cartCount} items`}>
@@ -124,7 +124,7 @@ function SearchPage({ catalog, query, setQuery, onSelect, onQuickAdd, recentlyVi
           {filtered.length === 0 && <p className="empty-results">No matching Sun Devil styles. Try “shirt”, “hoodie”, or “quarter zip”.</p>}
         </main>
       </div>
-      <footer className="shop-footer"><a href="#/">Back to top</a><span>Prototype variant: redesign</span><span>© Campus Cart demo</span></footer>
+      <footer className="shop-footer"><a href="#/">Back to top</a><span>Prototype variant: redesign</span><span>© Shamazon demo</span></footer>
     </>
   );
 }
